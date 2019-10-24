@@ -1,2 +1,7 @@
 # Add-to-Card
-Add to Card for e-Commerce
+---------------------------
+An Add to Card for Voivod e-Commerce Website
+---------------------------
+- Vanilla JS
+- HTML
+- CSS
