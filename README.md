@@ -1,6 +1,6 @@
 # Add-to-Card
 ---------------------------
-An Add to Card for Voivod e-Commerce Website
+An Add to Card for Voivod Store
 ---------------------------
 - Vanilla JS
 - HTML
