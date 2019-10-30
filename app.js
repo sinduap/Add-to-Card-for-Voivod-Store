@@ -6,23 +6,23 @@ if(document.readyState == 'loading') {
 
 function ready() {
     //remove button
-    var removeCartButton = document.getElementsByClassName('btn-danger');
-    for(var i = 0; i < removeCartButton.length; i++) {
-        var button = removeCartButton[i];
+    let removeCartButton = document.getElementsByClassName('btn-danger');
+    for(let i = 0; i < removeCartButton.length; i++) {
+        let button = removeCartButton[i];
         button.addEventListener('click', removeCart)
     }
 
     //mencegah negative value pada quantity input
-    var inputQuantity = document.getElementsByClassName('cart-quantity-input');
-    for(var i = 0; i < inputQuantity.length; i++) {
-        var input = inputQuantity[i];
+    let inputQuantity = document.getElementsByClassName('cart-quantity-input');
+    for(let i = 0; i < inputQuantity.length; i++) {
+        let input = inputQuantity[i];
         input.addEventListener('change', quantityChanged);
     }
 
     //menambah item ke cart
-    var addToCartButton = document.getElementsByClassName('shop-item-button');
-    for(var i = 0; i < addToCartButton.length; i++) {
-        var addToCart = addToCartButton[i];
+    let addToCartButton = document.getElementsByClassName('shop-item-button');
+    for(let i = 0; i < addToCartButton.length; i++) {
+        let addToCart = addToCartButton[i];
         addToCart.addEventListener('click', addToCartClicked);
     }
 
@@ -31,9 +31,9 @@ function ready() {
 }
 
 function purchaseClicked() {
-    var total = document.getElementsByClassName('cart-total-price')[0].innerText;
+    let total = document.getElementsByClassName('cart-total-price')[0].innerText;
     alert('Total ' + total + '\nThank you for the purchase');
-    var cartItems = document.getElementsByClassName('cart-items')[0];
+    let cartItems = document.getElementsByClassName('cart-items')[0];
     while (cartItems.hasChildNodes()) {
         cartItems.removeChild(cartItems.firstChild);
     }
@@ -41,22 +41,22 @@ function purchaseClicked() {
 }
 
 function addToCartClicked(e) {
-    var addButton = e.target;
-    var shopItem = addButton.parentElement.parentElement;
-    var title = shopItem.getElementsByClassName('shop-item-title')[0].innerText;
-    var price = shopItem.getElementsByClassName('shop-item-price')[0].innerText;
-    var image = shopItem.getElementsByClassName('shop-item-image')[0].src;
+    let addButton = e.target;
+    let shopItem = addButton.parentElement.parentElement;
+    let title = shopItem.getElementsByClassName('shop-item-title')[0].innerText;
+    let price = shopItem.getElementsByClassName('shop-item-price')[0].innerText;
+    let image = shopItem.getElementsByClassName('shop-item-image')[0].src;
     addItemToCart(title, price, image);
 }
 
 function addItemToCart(title, price, image) {
     //buat element div baru
-    var cartRow = document.createElement('div');
+    let cartRow = document.createElement('div');
     //tambahkan class untuk styling
     cartRow.classList.add('cart-row');
     //buat element cart item
-    var cartItem = document.getElementsByClassName('cart-items')[0];
-    var cartRowContents = `
+    let cartItem = document.getElementsByClassName('cart-items')[0];
+    let cartRowContents = `
                     <div class="cart-item cart-column">
                         <img class="cart-item-image" src="${image}" width="100" height="100">
                         <span class="cart-item-title">${title}</span>
@@ -68,8 +68,8 @@ function addItemToCart(title, price, image) {
                     </div>`
     cartRow.innerHTML = cartRowContents;
     //kalau item sudah dimasukkan
-    var cartItemName = cartItem.getElementsByClassName('cart-item-title');
-    for (var i = 0; i < cartItemName.length; i++) {
+    let cartItemName = cartItem.getElementsByClassName('cart-item-title');
+    for (let i = 0; i < cartItemName.length; i++) {
         if (cartItemName[i].innerText == title) {
         return;
         }
@@ -83,7 +83,7 @@ function addItemToCart(title, price, image) {
 }
 
 function quantityChanged(e) {
-    var inputChanged = e.target;
+    let inputChanged = e.target;
     if (isNaN(inputChanged.value) || inputChanged.value <= 0) {
         inputChanged.value = 1;
     }
@@ -91,21 +91,21 @@ function quantityChanged(e) {
 }
 
 function removeCart(e) {
-    var buttonClicked = e.target;
+    let buttonClicked = e.target;
     buttonClicked.parentElement.parentElement.remove();
     updateTotalCart();
 }
 
 function updateTotalCart() {
-    var cartItemContainer = document.getElementsByClassName('cart-items')[0];
-    var cartRows = cartItemContainer.getElementsByClassName('cart-row');
-    var total = 0;
-    for(var i = 0; i < cartRows.length; i++) {
-        var cartRow = cartRows[i];
-        var priceElement = cartRow.getElementsByClassName('cart-price')[0];
-        var quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0];
-        var price = parseFloat(priceElement.innerText.replace('$', ''));
-        var quantity = quantityElement.value;
+    let cartItemContainer = document.getElementsByClassName('cart-items')[0];
+    let cartRows = cartItemContainer.getElementsByClassName('cart-row');
+    let total = 0;
+    for(let i = 0; i < cartRows.length; i++) {
+        let cartRow = cartRows[i];
+        let priceElement = cartRow.getElementsByClassName('cart-price')[0];
+        let quantityElement = cartRow.getElementsByClassName('cart-quantity-input')[0];
+        let price = parseFloat(priceElement.innerText.replace('$', ''));
+        let quantity = quantityElement.value;
         total += (price * quantity);
     }
     total = (Math.round(total) * 100) / 100;
